@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Étude scientifique et plan d'action — Itinérance au Québec — HABITAT+</title>
+<style>
+  :root{
+    --bleu:#14467c; --bleu-fonce:#0d3259; --bleu-clair:#e8eff7; --bleu-moyen:#c9d9ec;
+    --texte:#1c2733; --texte-doux:#4a5a6a; --fond:#f6f8fa; --carte:#ffffff;
+    --bord:#d4dde6; --accent:#b98a1c;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--fond);color:var(--texte);
+    font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px;line-height:1.6;}
+  .page{max-width:1000px;margin:0 auto;padding:0 20px 60px;}
+  header.hero{background:linear-gradient(160deg,var(--bleu-fonce),var(--bleu));color:#fff;
+    margin:0 -20px;padding:52px 40px 44px;border-bottom:5px solid var(--accent);}
+  header.hero .sur{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:#bcd2ea;margin:0 0 14px;}
+  header.hero h1{font-size:38px;line-height:1.2;margin:0 0 14px;font-weight:800;}
+  header.hero .sous{font-size:21px;line-height:1.45;margin:0 0 8px;color:#eaf1f9;font-weight:600;}
+  header.hero .nature{font-size:17px;margin:0 0 18px;color:#cfe0f1;}
+  header.hero .region{display:inline-block;border:1px solid #7fa5cc;border-radius:999px;
+    padding:5px 16px;font-size:15px;color:#eaf1f9;background:rgba(255,255,255,.08);}
+  section{background:var(--carte);border:1px solid var(--bord);border-radius:10px;
+    padding:34px 40px;margin-top:28px;}
+  section.intro{background:transparent;border:none;padding:10px 4px 0;margin-top:30px;}
+  h2{font-size:27px;color:var(--bleu-fonce);margin:0 0 18px;line-height:1.3;
+    border-bottom:3px solid var(--bleu-moyen);padding-bottom:10px;}
+  h2 .num{color:var(--bleu);margin-right:8px;}
+  h3{font-size:20px;color:var(--bleu);margin:28px 0 10px;line-height:1.35;}
+  h3:first-of-type{margin-top:6px;}
+  p{margin:0 0 14px;}
+  ul,ol{margin:0 0 16px;padding-left:26px;}
+  li{margin-bottom:6px;}
+  .lead{font-size:18.5px;}
+  .cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:22px 0;}
+  .carte-stat{background:var(--bleu-clair);border:1px solid var(--bleu-moyen);border-top:5px solid var(--bleu);
+    border-radius:8px;padding:20px 18px;text-align:center;}
+  .carte-stat .chiffre{font-size:40px;font-weight:800;color:var(--bleu-fonce);line-height:1.1;display:block;}
+  .carte-stat .etiquette{font-weight:700;display:block;margin-top:6px;font-size:16px;}
+  .carte-stat .detail{color:var(--texte-doux);font-size:14.5px;display:block;margin-top:5px;}
+  .encadre{background:var(--bleu-clair);border-left:5px solid var(--bleu);border-radius:0 8px 8px 0;
+    padding:18px 22px;margin:20px 0;}
+  .encadre p:last-child{margin-bottom:0;}
+  .note{background:#fdf6e0;border:1px solid #e8d48a;border-left:5px solid var(--accent);
+    border-radius:0 8px 8px 0;padding:18px 22px;margin:20px 0;}
+  .note p:last-child{margin-bottom:0;}
+  .source{font-size:14.5px;color:var(--texte-doux);font-style:italic;}
+  table{width:100%;border-collapse:collapse;margin:18px 0 22px;font-size:15.5px;}
+  th{background:var(--bleu);color:#fff;text-align:left;padding:10px 12px;font-weight:700;}
+  td{padding:9px 12px;border-bottom:1px solid var(--bord);vertical-align:top;}
+  tbody tr:nth-child(even) td{background:#f1f5fa;}
+  tr.total td{font-weight:800;background:var(--bleu-clair);border-top:2px solid var(--bleu);}
+  td.n, th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .modeles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0;}
+  .modele{border:1px solid var(--bord);border-top:6px solid var(--bleu);border-radius:8px;padding:22px;background:#fbfcfe;}
+  .modele h3{margin-top:0;font-size:19px;}
+  .modele .capacite{font-size:22px;font-weight:800;color:var(--bleu-fonce);margin:2px 0 12px;}
+  .modele .duree{background:var(--bleu-clair);border-radius:6px;padding:8px 12px;font-size:15px;margin-top:12px;}
+  .formule{background:var(--bleu-fonce);color:#fff;text-align:center;border-radius:10px;
+    padding:26px 20px;margin:24px 0;font-size:23px;font-weight:700;letter-spacing:.2px;}
+  .formule .var{color:#ffd968;}
+  .etapes{counter-reset:etape;list-style:none;padding-left:0;}
+  .etapes li{position:relative;padding:14px 18px 14px 70px;background:#fbfcfe;border:1px solid var(--bord);
+    border-radius:8px;margin-bottom:10px;}
+  .etapes li::before{counter-increment:etape;content:counter(etape);position:absolute;left:16px;top:50%;
+    transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:var(--bleu);color:#fff;
+    font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center;}
+  .etapes strong{color:var(--bleu-fonce);}
+  .gouv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;}
+  .gouv .bloc{border:1px solid var(--bord);border-radius:8px;padding:18px;background:#fbfcfe;text-align:center;}
+  .gouv .bloc strong{display:block;color:var(--bleu-fonce);font-size:17px;margin-bottom:6px;}
+  .gouv .bloc span{color:var(--texte-doux);font-size:15px;}
+  .phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;}
+  .phase{border:1px solid var(--bord);border-top:6px solid var(--bleu);border-radius:8px;padding:20px;background:#fbfcfe;}
+  .phase h3{margin-top:0;font-size:18px;}
+  .phase .quand{display:inline-block;background:var(--bleu);color:#fff;border-radius:999px;
+    padding:2px 12px;font-size:14px;font-weight:700;margin-bottom:10px;}
+  .habitat{background:linear-gradient(160deg,var(--bleu-fonce),var(--bleu));color:#fff;border:none;}
+  .habitat h2{color:#fff;border-bottom-color:rgba(255,255,255,.35);}
+  .habitat .nom{font-size:52px;font-weight:900;letter-spacing:1px;margin:6px 0 4px;color:#ffd968;}
+  .habitat .titre-prog{font-size:21px;font-weight:700;margin:0 0 4px;}
+  .habitat .prop{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:#bcd2ea;margin:0 0 22px;}
+  .habitat h3{color:#ffd968;}
+  .habitat strong{color:#fff;}
+  footer{margin-top:36px;text-align:center;color:var(--texte-doux);font-size:15px;padding:0 10px;}
+  footer .sig{font-weight:700;color:var(--bleu-fonce);font-size:16.5px;}
+  @media (max-width:640px){
+    header.hero{padding:38px 22px 32px;}
+    header.hero h1{font-size:29px;}
+    section{padding:26px 20px;}
+    .carte-stat .chiffre{font-size:32px;}
+    .habitat .nom{font-size:40px;}
+    table{font-size:14px;}
+    td,th{padding:7px 8px;}
+  }
+  @media print{
+    body{background:#fff;font-size:12pt;}
+    .page{max-width:none;padding:0;}
+    header.hero{margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    section{border:none;border-radius:0;padding:18px 0;page-break-inside:avoid;}
+    .carte-stat,.modele,.phase,.gouv .bloc,.formule,.habitat{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <p class="sur">Projet d'étude socioéconomique et territoriale</p>
+  <h1>Étude scientifique et plan d'action — Itinérance au Québec</h1>
+  <p class="sous">Programme provincial de maisons et d'appartements supervisés pour la réinsertion sociale</p>
+  <p class="region">Québec — 17 régions administratives</p>
+</header>
+
+<section class="intro">
+  <p class="lead">L'objectif est de concevoir un véritable programme provincial de lutte contre l'itinérance, fondé sur des données vérifiables, et non sur des estimations improvisées.</p>
+  <p>Je propose une approche qui dépasse l'hébergement d'urgence : offrir un logement stable, un accompagnement humain, un suivi psychosocial et un parcours de réinsertion adapté à chaque personne.</p>
+  <p>L'idée centrale est simple : une personne qui retrouve un logement sécuritaire, un encadrement adapté et un réseau de soutien augmente ses possibilités de retrouver son autonomie.</p>
+  <h3>Le projet devra reposer sur cinq principes</h3>
+  <ol>
+    <li>Des statistiques officielles et vérifiables.</li>
+    <li>Une analyse par région administrative et par municipalité.</li>
+    <li>Des maisons supervisées de différentes capacités.</li>
+    <li>Des appartements supervisés permettant une autonomie progressive.</li>
+    <li>Des partenariats contractuels avec les organismes communautaires, le réseau de la santé, les municipalités et les gouvernements.</li>
+  </ol>
+  <div class="encadre">
+    <p>Il faut aussi distinguer trois réalités : l'itinérance visible, l'itinérance cachée (hébergement temporaire chez des proches, par exemple) et les situations de logement précaire. Les additionner sans méthode produirait des chiffres scientifiquement trompeurs.</p>
+  </div>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1.</span>Ce que révèlent les chiffres officiels</h2>
+  <p class="source">Données consultées et vérifiées au 25 novembre 2026 — dernières séries publiques identifiées.</p>
+  <div class="cartes">
+    <div class="carte-stat">
+      <span class="chiffre">12 077</span>
+      <span class="etiquette">Personnes en itinérance visible</span>
+      <span class="detail">Dénombrement du 15 avril 2025, 15 régions sociosanitaires</span>
+    </div>
+    <div class="carte-stat">
+      <span class="chiffre">+20 %</span>
+      <span class="etiquette">Augmentation depuis 2022</span>
+      <span class="detail">Hausse provinciale rapportée par le MSSS</span>
+    </div>
+    <div class="carte-stat">
+      <span class="chiffre">9 518</span>
+      <span class="etiquette">Personnes dans des ressources d'hébergement</span>
+      <span class="detail">Environ 79 % du total dénombré en 2025</span>
+    </div>
+    <div class="carte-stat">
+      <span class="chiffre">1 887</span>
+      <span class="etiquette">Personnes dans des lieux extérieurs</span>
+      <span class="detail">Environ 16 %, incluant les campements</span>
+    </div>
+  </div>
+  <p class="source">Sources : MSSS, résultats préliminaires du dénombrement 2025 et données régionales.</p>
+
+  <h3>Une réalité encore plus importante que le chiffre officiel</h3>
+  <p>L'Institut de la statistique du Québec rapporte qu'en 2020-2021 :</p>
+  <ul>
+    <li>Environ <strong>331 000</strong> personnes de 15 ans et plus avaient déjà vécu une situation d'itinérance visible ou cachée.</li>
+    <li>Environ <strong>298 500</strong> avaient connu une forme d'itinérance cachée.</li>
+    <li>Environ <strong>96 400</strong> avaient connu une forme d'itinérance visible.</li>
+  </ul>
+  <div class="note">
+    <p><strong>Ces catégories se chevauchent : il ne faut donc pas additionner les deux dernières valeurs.</strong></p>
+  </div>
+  <p>Ces chiffres sont des expériences au cours de la vie, et non le nombre de personnes actuellement sans logement. Ils montrent néanmoins pourquoi le dénombrement d'une seule nuit ne suffit pas pour planifier les besoins réels.</p>
+  <p class="source">Source : Institut de la statistique du Québec.</p>
+
+  <h3>Ce que cela signifie pour le Québec</h3>
+  <p>Trois conclusions ressortent :</p>
+  <ol>
+    <li>L'itinérance n'est plus seulement un problème des grands centres urbains.</li>
+    <li>Les ressources d'urgence sont nécessaires, mais elles ne constituent pas à elles seules une solution durable.</li>
+    <li>Il faut créer un continuum résidentiel allant de l'hébergement temporaire jusqu'à l'appartement autonome avec soutien au besoin.</li>
+  </ol>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2.</span>Portrait quantitatif par région administrative</h2>
+  <p>Voici les résultats du dénombrement 2025, classés selon les régions sociosanitaires utilisées dans les données officielles.</p>
+  <p>Les chiffres représentent des personnes estimées pour une seule nuit, et non le nombre de logements requis. Les taux sont par 100 000 habitants.</p>
+  <table>
+    <thead>
+      <tr><th>Région</th><th class="n">Personnes</th><th class="n">Taux / 100 000</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Montréal</td><td class="n">5 036</td><td class="n">229,5</td></tr>
+      <tr><td>Outaouais</td><td class="n">866</td><td class="n">200,7</td></tr>
+      <tr><td>Abitibi-Témiscamingue</td><td class="n">308</td><td class="n">205,9</td></tr>
+      <tr><td>Côte-Nord</td><td class="n">155</td><td class="n">173,6</td></tr>
+      <tr><td>Estrie</td><td class="n">718</td><td class="n">133,2</td></tr>
+      <tr><td>Capitale-Nationale</td><td class="n">1 084</td><td class="n">131,8</td></tr>
+      <tr><td>Laurentides</td><td class="n">779</td><td class="n">114,2</td></tr>
+      <tr><td>Saguenay–Lac-Saint-Jean</td><td class="n">318</td><td class="n">110,7</td></tr>
+      <tr><td>Gaspésie–Îles-de-la-Madeleine</td><td class="n">100</td><td class="n">108,2</td></tr>
+      <tr><td>Mauricie–Centre-du-Québec</td><td class="n">526</td><td class="n">94,3</td></tr>
+      <tr><td>Montérégie</td><td class="n">1 033</td><td class="n">67,7</td></tr>
+      <tr><td>Bas-Saint-Laurent</td><td class="n">143</td><td class="n">69,7</td></tr>
+      <tr><td>Lanaudière</td><td class="n">400</td><td class="n">70,4</td></tr>
+      <tr><td>Chaudière-Appalaches</td><td class="n">311</td><td class="n">67,6</td></tr>
+      <tr><td>Laval</td><td class="n">300</td><td class="n">64,7</td></tr>
+      <tr><td>Nord-du-Québec</td><td class="n">ND</td><td class="n">ND</td></tr>
+      <tr class="total"><td>Total</td><td class="n">12 077</td><td class="n">—</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Total : 12 077 personnes. Les chiffres régionaux proviennent du tableau statistique du dénombrement 2025; les taux sont ceux publiés avec les données.</p>
+
+  <h3>Les six régions ayant les plus hauts nombres dénombrés</h3>
+  <p>Personnes en situation d'itinérance visible, nuit du 15 avril 2025.</p>
+  <ol>
+    <li><strong>Montréal</strong> — 5 036</li>
+    <li><strong>Capitale-Nationale</strong> — 1 084</li>
+    <li><strong>Montérégie</strong> — 1 033</li>
+    <li><strong>Outaouais</strong> — 866</li>
+    <li><strong>Laurentides</strong> — 779</li>
+    <li><strong>Estrie</strong> — 718</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>Attention à la géographie administrative :</strong> le dénombrement est publié selon 15 régions sociosanitaires, alors que le Québec compte 17 régions administratives. La Mauricie et le Centre-du-Québec sont regroupés dans cette série. Le Nord-du-Québec n'y figure pas. Il serait scientifiquement incorrect de répartir artificiellement les 526 personnes entre les deux régions ou de conclure que le Nord-du-Québec n'a aucun besoin.</p>
+    <p>Les 17 régions administratives devront néanmoins toutes avoir leur propre plan d'action.</p>
+  </div>
+
+  <h3>Les régions qui méritent une attention prioritaire</h3>
+  <ul>
+    <li><strong>Montréal</strong> : volume absolu très élevé, nécessité d'une importante capacité de logement et d'accompagnement.</li>
+    <li><strong>Abitibi-Témiscamingue</strong> : croissance de 119,1 % depuis 2022.</li>
+    <li><strong>Côte-Nord</strong> : croissance de 65,1 %.</li>
+    <li><strong>Laval</strong> : croissance de 59,4 %.</li>
+    <li><strong>Saguenay–Lac-Saint-Jean</strong> : croissance de 50,5 %.</li>
+    <li><strong>Laurentides</strong> : croissance de 73,7 %.</li>
+  </ul>
+  <p>Ces variations montrent qu'une stratégie fondée uniquement sur le nombre absolu de personnes manquerait certaines crises régionales émergentes.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3.</span>Répartition territoriale : les 17 régions et les localités à desservir</h2>
+  <p>Il faut éviter une erreur fréquente : installer toutes les maisons dans les grandes villes et laisser les petites municipalités sans solution.</p>
+  <h3>Je propose un modèle à trois échelles</h3>
+  <ul>
+    <li><strong>Pôle régional</strong> : une maison supervisée principale et des services multidisciplinaires.</li>
+    <li><strong>Pôles secondaires</strong> : appartements supervisés dans les villes et MRC environnantes.</li>
+    <li><strong>Service mobile</strong> : intervenants se déplaçant dans les municipalités rurales, éloignées et nordiques.</li>
+  </ul>
+  <p>Les localités ci-dessous sont des territoires proposés pour l'implantation et l'analyse. Ce ne sont pas des localités auxquelles le MSSS aurait attribué individuellement les chiffres du dénombrement.</p>
+  <table>
+    <thead>
+      <tr><th>Région administrative</th><th>Localités prioritaires à étudier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>01. Bas-Saint-Laurent</td><td>Rimouski, Rivière-du-Loup, Matane, Mont-Joli</td></tr>
+      <tr><td>02. Saguenay–Lac-Saint-Jean</td><td>Saguenay, Alma, Roberval, Dolbeau-Mistassini</td></tr>
+      <tr><td>03. Capitale-Nationale</td><td>Québec, Portneuf, La Malbaie, Baie-Saint-Paul</td></tr>
+      <tr><td>04. Mauricie</td><td>Trois-Rivières, Shawinigan, La Tuque</td></tr>
+      <tr><td>05. Estrie</td><td>Sherbrooke, Magog, Granby, Lac-Mégantic</td></tr>
+      <tr><td>06. Montréal</td><td>Ville-Marie, Hochelaga-Maisonneuve, Parc-Extension, Saint-Laurent, Lachine</td></tr>
+      <tr><td>07. Outaouais</td><td>Gatineau, Hull, Aylmer, Maniwaki</td></tr>
+      <tr><td>08. Abitibi-Témiscamingue</td><td>Rouyn-Noranda, Val-d'Or, Amos, La Sarre, Ville-Marie</td></tr>
+      <tr><td>09. Côte-Nord</td><td>Sept-Îles, Baie-Comeau, Port-Cartier, Forestville</td></tr>
+      <tr><td>10. Nord-du-Québec</td><td>Chibougamau, Chapais, Lebel-sur-Quévillon, communautés cries et inuites</td></tr>
+      <tr><td>11. Gaspésie–Îles-de-la-Madeleine</td><td>Gaspé, Sainte-Anne-des-Monts, Carleton-sur-Mer, Chandler, Îles-de-la-Madeleine</td></tr>
+      <tr><td>12. Chaudière-Appalaches</td><td>Lévis, Saint-Georges, Montmagny, Thetford Mines, Sainte-Marie</td></tr>
+      <tr><td>13. Laval</td><td>Laval-des-Rapides, Chomedey, Pont-Viau, Sainte-Rose</td></tr>
+      <tr><td>14. Lanaudière</td><td>Joliette, Terrebonne, Repentigny, Mascouche, Saint-Michel-des-Saints</td></tr>
+      <tr><td>15. Laurentides</td><td>Saint-Jérôme, Mont-Laurier, Sainte-Agathe-des-Monts, Mirabel</td></tr>
+      <tr><td>16. Montérégie</td><td>Longueuil, Saint-Hyacinthe, Salaberry-de-Valleyfield, Sorel-Tracy, Châteauguay</td></tr>
+      <tr><td>17. Centre-du-Québec</td><td>Drummondville, Victoriaville, Plessisville, Bécancour, Nicolet</td></tr>
+    </tbody>
+  </table>
+  <div class="encadre">
+    <p>Une particularité importante : les territoires nordiques ne doivent pas recevoir un modèle conçu pour Montréal. Les coûts de construction, le transport, la disponibilité de personnel et les réalités culturelles des communautés autochtones exigent des solutions distinctes, conçues avec leurs autorités et leurs organismes.</p>
+  </div>
+
+  <h3>Où se trouvent les réseaux communautaires à mobiliser ?</h3>
+  <p>Le Réseau Solidarité itinérance du Québec constitue un partenaire incontournable. Ses concertations et membres permettent de rejoindre les organismes déjà actifs.</p>
+  <p>Quelques exemples de structures territoriales existantes :</p>
+  <ul>
+    <li><strong>Québec</strong> : Regroupement d'aide aux itinérants et itinérantes de Québec (RAIIQ).</li>
+    <li><strong>Lévis</strong> : Regroupement action itinérance Lévis (RAIL).</li>
+    <li><strong>Outaouais</strong> : Collectif régional de lutte à l'itinérance de l'Outaouais.</li>
+    <li><strong>Laurentides</strong> : Concertation régionale en itinérance.</li>
+    <li><strong>Lanaudière</strong> : Table Action Prévention Itinérance de Lanaudière.</li>
+    <li><strong>Drummondville</strong> : Table des partenaires en itinérance de la MRC de Drummond.</li>
+    <li><strong>Laval</strong> : Réseau des organismes en itinérance de Laval.</li>
+  </ul>
+  <p>Le principe doit être de financer et de consolider les organismes existants, plutôt que de créer un nouvel appareil administratif qui ferait concurrence à ceux qui connaissent déjà les personnes et les territoires.</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4.</span>Le modèle de logement proposé</h2>
+  <p>Je recommande de créer un réseau provincial de logements à supervision graduelle.</p>
+  <p>Il ne faut pas imposer le même niveau d'encadrement à tout le monde. Une personne qui sort d'un campement, une personne qui quitte une dépendance et une personne qui a perdu son logement après une séparation n'ont pas nécessairement les mêmes besoins.</p>
+  <div class="modeles">
+    <div class="modele">
+      <h3>Type A — Maison de stabilisation supervisée</h3>
+      <p class="capacite">8 à 12 résidents</p>
+      <ul>
+        <li>Présence de personnel 24 h/24.</li>
+        <li>Chambres individuelles.</li>
+        <li>Repas, hygiène et accompagnement.</li>
+        <li>Soutien psychosocial et médical coordonné.</li>
+        <li>Stabilisation avant le passage au logement autonome.</li>
+      </ul>
+      <p class="duree"><strong>Durée indicative :</strong> 3 à 12 mois, adaptée aux besoins individuels.</p>
+    </div>
+    <div class="modele">
+      <h3>Type B — Appartements supervisés</h3>
+      <p class="capacite">12 à 30 logements par projet</p>
+      <ul>
+        <li>Appartement individuel ou partagé.</li>
+        <li>Intervenant sur place selon les besoins.</li>
+        <li>Visites et suivi réguliers.</li>
+        <li>Gestion du budget, du bail et des responsabilités.</li>
+        <li>Retour progressif à l'autonomie.</li>
+      </ul>
+      <p class="duree"><strong>Durée indicative :</strong> 6 à 24 mois, renouvelable selon les besoins.</p>
+    </div>
+    <div class="modele">
+      <h3>Type C — Logements autonomes avec soutien</h3>
+      <p class="capacite">Baux permanents</p>
+      <ul>
+        <li>Appartement individuel.</li>
+        <li>Loyer abordable.</li>
+        <li>Accompagnement communautaire volontaire.</li>
+        <li>Suivi de prévention des rechutes résidentielles.</li>
+        <li>Possibilité de réintégrer temporairement un niveau de soutien plus élevé.</li>
+      </ul>
+      <p class="duree"><strong>Objectif :</strong> stabilité résidentielle à long terme.</p>
+    </div>
+  </div>
+
+  <h3>Pourquoi ce modèle est scientifiquement pertinent</h3>
+  <p>Il s'appuie notamment sur les recherches concernant le programme Housing First (Logement d'abord).</p>
+  <p>Une revue systématique et méta-analyse publiée dans le Journal of Epidemiology and Community Health a étudié quatre essais randomisés.</p>
+  <p>Les résultats indiquent notamment :</p>
+  <ul>
+    <li>Une probabilité environ <strong>2,46 fois</strong> plus élevée d'être logé de façon stable après 18 à 24 mois.</li>
+    <li>Une réduction des hospitalisations, avec un rapport de taux de <strong>0,76</strong>.</li>
+    <li>Une réduction des visites aux urgences, avec un rapport de taux de <strong>0,63</strong>.</li>
+  </ul>
+  <p>La revue souligne cependant les limites méthodologiques et l'incertitude de certains résultats de santé. Elle ne démontre pas que tous les types de maisons supervisées produisent les mêmes effets.</p>
+  <div class="encadre">
+    <p>Conséquence pour notre programme : le logement ne devrait pas être conditionnel à l'abstinence ou à la réussite préalable d'un parcours thérapeutique. Les soins, la thérapie et la réinsertion doivent être proposés en parallèle du logement.</p>
+    <p><strong>La supervision est un soutien, pas une punition.</strong></p>
+  </div>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5.</span>Organisation des services : une équipe multidisciplinaire</h2>
+  <p>Chaque maison devrait fonctionner avec une équipe professionnelle et communautaire.</p>
+  <table>
+    <thead>
+      <tr><th>Fonction</th><th>Responsabilité</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Direction de la ressource</td><td>Gestion, administration, qualité</td></tr>
+      <tr><td>Intervenant psychosocial</td><td>Plan individuel de réinsertion</td></tr>
+      <tr><td>Travailleur social</td><td>Prestations, droits et démarches</td></tr>
+      <tr><td>Intervenant en dépendance</td><td>Accompagnement et réduction des méfaits</td></tr>
+      <tr><td>Professionnel en santé mentale</td><td>Évaluation et continuité des soins</td></tr>
+      <tr><td>Conseiller en emploi</td><td>Formation et intégration professionnelle</td></tr>
+      <tr><td>Intervenant communautaire</td><td>Réseau social et activités</td></tr>
+      <tr><td>Gestionnaire immobilier</td><td>Entretien, logements et baux</td></tr>
+      <tr><td>Pair aidant</td><td>Accompagnement par expérience vécue</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Le parcours d'une personne</h3>
+  <ol class="etapes">
+    <li><strong>Accueil et évaluation</strong> — Identification des besoins, situation résidentielle, santé, sécurité et préférences.</li>
+    <li><strong>Stabilisation</strong> — Hébergement, soins, alimentation, documents officiels et accompagnement.</li>
+    <li><strong>Réinsertion progressive</strong> — Formation, emploi, gestion financière, relations sociales et activités.</li>
+    <li><strong>Passage en appartement</strong> — Bail, budget, accompagnement et développement de l'autonomie.</li>
+    <li><strong>Maintien résidentiel</strong> — Suivi communautaire, prévention des expulsions et intervention rapide en cas de difficulté.</li>
+  </ol>
+
+  <h3>Des parcours spécifiques</h3>
+  <p>Il faut aussi prévoir des parcours spécifiques pour :</p>
+  <ul>
+    <li>Les femmes victimes de violence et les femmes avec enfants.</li>
+    <li>Les jeunes de 16 à 25 ans.</li>
+    <li>Les personnes âgées en situation de précarité.</li>
+    <li>Les personnes ayant des troubles de santé mentale.</li>
+    <li>Les personnes vivant avec une dépendance.</li>
+    <li>Les personnes sortant d'un établissement carcéral.</li>
+    <li>Les personnes autochtones.</li>
+    <li>Les personnes vivant avec un handicap.</li>
+  </ul>
+  <p>La mixité des clientèles doit être réfléchie : une maison n'est pas automatiquement appropriée pour tous les profils.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6.</span>Financement et fonctionnement économique</h2>
+  <p>Le programme doit être financé sur plusieurs années. Construire des maisons sans assurer les salaires, l'entretien et le suivi psychosocial serait une erreur majeure.</p>
+  <p>Je recommande un financement réparti entre :</p>
+  <table>
+    <thead>
+      <tr><th>Partenaire</th><th>Contribution proposée</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Gouvernement du Québec</td><td>Logement, santé, services sociaux, soutien aux organismes</td></tr>
+      <tr><td>Gouvernement du Canada</td><td>Programmes de lutte contre l'itinérance et financement du logement</td></tr>
+      <tr><td>Municipalités et MRC</td><td>Terrains, bâtiments, locaux et infrastructures</td></tr>
+      <tr><td>Organismes communautaires</td><td>Gestion des services et accompagnement</td></tr>
+      <tr><td>Société d'habitation du Québec</td><td>Développement et soutien au logement social</td></tr>
+      <tr><td>Fondations et partenaires privés</td><td>Équipements, formation et projets complémentaires</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Trois modèles immobiliers à comparer</h3>
+  <ol>
+    <li>Acquisition et rénovation de bâtiments existants.</li>
+    <li>Construction de petites maisons communautaires.</li>
+    <li>Acquisition ou location de blocs d'appartements avec soutien intégré.</li>
+  </ol>
+  <p>Il faut comparer les trois solutions selon le coût total sur 20 ans, pas uniquement selon le coût initial.</p>
+
+  <h3>Exemple de projet pilote : 30 personnes</h3>
+  <p class="source">Scénario de planification proposé — non devisé.</p>
+  <table>
+    <thead>
+      <tr><th>Composante</th><th class="n">Capacité</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Maison supervisée</td><td class="n">10 personnes</td></tr>
+      <tr><td>Appartements supervisés</td><td class="n">12 personnes</td></tr>
+      <tr><td>Logements autonomes avec soutien</td><td class="n">8 personnes</td></tr>
+      <tr class="total"><td>Total</td><td class="n">30 personnes</td></tr>
+    </tbody>
+  </table>
+  <p>Ce projet permettrait de tester le parcours complet plutôt que de financer uniquement des lits d'urgence.</p>
+  <p>Les coûts devront être calculés à partir de devis immobiliers locaux, de grilles salariales, des besoins de présence 24/7, des coûts alimentaires, des frais de soins et des subventions effectivement admissibles.</p>
+
+  <h3>Pourquoi mesurer les économies publiques ?</h3>
+  <p>L'itinérance entraîne des dépenses dans les urgences, les hospitalisations, les services policiers, les interventions judiciaires et les hébergements d'urgence.</p>
+  <p>Une étude du CIRANO publiée en 2026, <em>Les coûts économiques associés à l'itinérance au Québec</em>, fournit une base de travail pour évaluer ces dépenses.</p>
+  <p>Le modèle économique devra comparer :</p>
+  <div class="formule"><span class="var">Coût net</span> = <span class="var">Coût du programme</span> − <span class="var">Dépenses publiques évitées</span></div>
+  <div class="note">
+    <p>Il faudra éviter de présenter toutes les économies potentielles comme des économies immédiatement récupérables par le gouvernement : certaines dépenses sont déplacées entre les organismes et les réseaux publics.</p>
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7.</span>Gouvernance : travailler avec les organismes communautaires</h2>
+  <p>Je propose une structure provinciale avec une gouvernance régionale autonome.</p>
+  <div class="gouv">
+    <div class="bloc">
+      <strong>Comité provincial de coordination</strong>
+      <span>Gouvernement • Santé Québec • SHQ • représentants communautaires • municipalités • personnes ayant vécu l'itinérance</span>
+    </div>
+    <div class="bloc">
+      <strong>17 cellules régionales</strong>
+      <span>Planification territoriale, financement et évaluation</span>
+    </div>
+    <div class="bloc">
+      <strong>Tables locales</strong>
+      <span>MRC, villes, organismes et partenaires</span>
+    </div>
+    <div class="bloc">
+      <strong>Réseau de maisons et d'appartements supervisés</strong>
+      <span>Services résidentiels, équipes de terrain et réinsertion sociale</span>
+    </div>
+  </div>
+  <h3>Les responsabilités doivent être claires</h3>
+  <ul>
+    <li>Le gouvernement finance et établit les objectifs provinciaux.</li>
+    <li>Les municipalités facilitent l'accès aux terrains et aux immeubles.</li>
+    <li>Les organismes communautaires assurent les services qu'ils ont la compétence et la capacité d'offrir.</li>
+    <li>Les établissements de santé assurent les soins et les services cliniques.</li>
+    <li>Les personnes concernées participent aux décisions sur les services et leurs conditions de vie.</li>
+  </ul>
+  <p>Les organismes communautaires doivent conserver leur autonomie et être rémunérés adéquatement pour leurs services.</p>
+  <div class="encadre">
+    <p>Un partenariat ne devrait jamais devenir une façon de transférer des responsabilités gouvernementales sans financement suffisant.</p>
+  </div>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8.</span>Comment mesurer scientifiquement les résultats ?</h2>
+  <p>Le succès ne doit pas être mesuré au nombre de personnes qui passent par une maison.</p>
+  <p>Il doit être mesuré par le nombre de personnes qui retrouvent et conservent une stabilité résidentielle.</p>
+  <p>Je propose les indicateurs suivants :</p>
+  <table>
+    <thead>
+      <tr><th>Indicateur</th><th class="n">Cible expérimentale</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Maintien en logement à 6 mois</td><td class="n">85 %</td></tr>
+      <tr><td>Maintien en logement à 12 mois</td><td class="n">80 %</td></tr>
+      <tr><td>Maintien en logement à 24 mois</td><td class="n">75 %</td></tr>
+      <tr><td>Plan individuel établi</td><td class="n">100 %</td></tr>
+      <tr><td>Accès à un médecin ou service clinique selon les besoins</td><td class="n">90 %</td></tr>
+      <tr><td>Accès à un accompagnement psychosocial</td><td class="n">100 %</td></tr>
+      <tr><td>Satisfaction des résidents</td><td class="n">85 %</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <p>Ces valeurs sont des objectifs de gestion proposés, et non des résultats scientifiques déjà observés ni des garanties de performance.</p>
+  </div>
+
+  <h3>Méthode d'évaluation</h3>
+  <p>Chaque personne serait suivie à l'admission, puis à 3, 6, 12, 18 et 24 mois.</p>
+  <p>Les données permettraient de mesurer :</p>
+  <ul>
+    <li>La durée de maintien en logement.</li>
+    <li>Les retours à l'itinérance.</li>
+    <li>Les hospitalisations et visites aux urgences.</li>
+    <li>La continuité des soins.</li>
+    <li>L'accès à l'emploi ou à la formation.</li>
+    <li>La stabilité financière.</li>
+    <li>Le sentiment d'autonomie et d'appartenance sociale.</li>
+  </ul>
+  <p>Un évaluateur universitaire indépendant devrait analyser les résultats et comparer les différentes formes d'hébergement, en tenant compte des différences initiales entre les clientèles.</p>
+  <p>Les données personnelles seraient protégées et les résultats publiés sous forme agrégée.</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9.</span>Déploiement provincial proposé</h2>
+  <p>Je recommande de ne pas lancer immédiatement 17 programmes immobiliers indépendants.</p>
+  <p>Il faut tester, mesurer, corriger et ensuite déployer.</p>
+  <h3>Calendrier de mise en œuvre</h3>
+  <div class="phases">
+    <div class="phase">
+      <h3>Phase 1 — Étude et inventaire</h3>
+      <span class="quand">0 à 6 mois</span>
+      <ul>
+        <li>Inventaire des organismes et des logements existants.</li>
+        <li>Analyse des besoins par MRC et municipalité.</li>
+        <li>Consultation des personnes concernées.</li>
+        <li>Sélection des immeubles et des sites pilotes.</li>
+        <li>Établissement des budgets et des partenariats.</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <h3>Phase 2 — Projets pilotes</h3>
+      <span class="quand">6 à 18 mois</span>
+      <p>Développer les premiers projets dans trois territoires différents :</p>
+      <ul>
+        <li><strong>Montréal</strong> : volume et complexité des besoins.</li>
+        <li><strong>Abitibi-Témiscamingue</strong> : croissance rapide et réalité régionale.</li>
+        <li><strong>Chaudière-Appalaches</strong> : expérimentation d'un modèle adapté aux villes moyennes et aux milieux ruraux.</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <h3>Phase 3 — Évaluation et ajustements</h3>
+      <span class="quand">18 à 30 mois</span>
+      <ul>
+        <li>Évaluer les résultats résidentiels.</li>
+        <li>Mesurer les coûts réels.</li>
+        <li>Vérifier les ratios de personnel.</li>
+        <li>Corriger les modèles selon les résultats.</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <h3>Phase 4 — Déploiement provincial</h3>
+      <span class="quand">30 à 60 mois</span>
+      <ul>
+        <li>Implantation dans les 17 régions.</li>
+        <li>Développement des pôles secondaires.</li>
+        <li>Ententes permanentes avec les organismes.</li>
+        <li>Tableau de bord provincial et suivi annuel.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10.</span>Un élément essentiel : un véritable inventaire des 1 123 municipalités</h2>
+  <p>Le tableau précédent propose des pôles d'implantation. Il ne constitue pas encore un inventaire exhaustif des municipalités.</p>
+  <p>Pour réaliser le travail complet, il faut créer une base territoriale comprenant les 17 régions, les 87 MRC et les 1 123 municipalités locales.</p>
+  <p>Chaque municipalité devrait être évaluée selon les critères suivants :</p>
+  <table>
+    <thead>
+      <tr><th>Critère</th><th>Information à recueillir</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Population</td><td>Population et évolution démographique</td></tr>
+      <tr><td>Itinérance</td><td>Nombre connu, estimé et évolution</td></tr>
+      <tr><td>Logement</td><td>Loyers, logements vacants, disponibilité</td></tr>
+      <tr><td>Pauvreté</td><td>Faible revenu et précarité</td></tr>
+      <tr><td>Santé</td><td>CLSC, médecins, santé mentale</td></tr>
+      <tr><td>Communautaire</td><td>Organismes et capacité d'accueil</td></tr>
+      <tr><td>Transport</td><td>Accessibilité des services</td></tr>
+      <tr><td>Immobilier</td><td>Immeubles disponibles et coûts</td></tr>
+      <tr><td>Emploi</td><td>Formation et possibilités d'intégration</td></tr>
+      <tr><td>Services d'urgence</td><td>Refuges, haltes et hébergement temporaire</td></tr>
+    </tbody>
+  </table>
+  <p>Il faudra aussi établir des indicateurs propres aux communautés autochtones, aux territoires nordiques et aux régions rurales.</p>
+  <div class="encadre">
+    <p>Une municipalité de 5 000 habitants peut avoir un besoin important même si elle n'apparaît pas dans les statistiques des grands centres. L'absence de dénombrement local ne doit jamais être interprétée comme une absence d'itinérance.</p>
+  </div>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11.</span>Les sources scientifiques et gouvernementales de référence</h2>
+  <p>Voici les documents qui doivent constituer le socle documentaire du programme.</p>
+  <h3>Gouvernement du Québec — MSSS</h3>
+  <p>Dénombrements, énumérations et rapports sur l'itinérance.</p>
+  <h3>Institut de la statistique du Québec</h3>
+  <p>Itinérance visible et cachée, statistiques démographiques et sociales.</p>
+  <h3>Institut national de santé publique du Québec</h3>
+  <p>Expertise méthodologique et analyses de santé publique. Rapport du dénombrement 2022.</p>
+  <h3>CIRANO</h3>
+  <p>Évaluation économique des conséquences de l'itinérance. <em>Les coûts économiques associés à l'itinérance au Québec</em>.</p>
+  <h3>Journal of Epidemiology and Community Health</h3>
+  <p>Revue scientifique sur l'efficacité du Housing First. Méta-analyse scientifique.</p>
+  <h3>Réseau Solidarité itinérance du Québec</h3>
+  <p>Réseaux communautaires, concertations et partenaires régionaux.</p>
+</section>
+
+<section id="s12" class="habitat">
+  <h2><span class="num">12.</span>Ma recommandation : créer le Programme québécois HABITAT+</h2>
+  <p class="nom">HABITAT+</p>
+  <p class="titre-prog">Programme québécois de stabilisation résidentielle et de réinsertion sociale</p>
+  <p class="prop">Proposition de programme provincial</p>
+
+  <h3>Vision</h3>
+  <p>Que chaque personne en situation d'itinérance puisse accéder à un logement sécuritaire, à un accompagnement adapté et à une véritable possibilité de retrouver son autonomie.</p>
+
+  <h3>Mission</h3>
+  <p>Transformer les ressources d'urgence en parcours durables de réinsertion sociale, grâce à un réseau coordonné de maisons supervisées et d'appartements accessibles.</p>
+
+  <h3>Objectifs</h3>
+  <ul>
+    <li>Réduire durablement l'itinérance.</li>
+    <li>Éviter les retours à la rue.</li>
+    <li>Développer des logements supervisés.</li>
+    <li>Renforcer les organismes communautaires.</li>
+    <li>Faciliter l'accès aux soins.</li>
+    <li>Favoriser l'autonomie financière et sociale.</li>
+    <li>Réduire les dépenses publiques évitables.</li>
+  </ul>
+
+  <h3>Les cinq décisions fondamentales</h3>
+  <ol>
+    <li>Adopter un modèle provincial commun, adaptable aux 17 régions.</li>
+    <li>Financer les logements et les équipes d'accompagnement ensemble.</li>
+    <li>Confier une place réelle aux organismes communautaires dans la gestion.</li>
+    <li>Garantir un logement sans imposer préalablement l'abstinence.</li>
+    <li>Publier annuellement les résultats, les coûts et les sorties durables de l'itinérance.</li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13.</span>Ce qu'il reste à produire pour avoir une étude complète et présentable aux gouvernements</h2>
+  <p>Je distinguerais maintenant quatre livrables complémentaires :</p>
+  <table>
+    <thead>
+      <tr><th>Livrable</th><th>Contenu</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A. Atlas provincial</td><td>Données par 17 régions, 87 MRC et 1 123 municipalités</td></tr>
+      <tr><td>B. Plan immobilier</td><td>Nombre de maisons, appartements, terrains et rénovations</td></tr>
+      <tr><td>C. Étude financière</td><td>Investissements, fonctionnement, financement et économies potentielles sur 5 et 10 ans</td></tr>
+      <tr><td>D. Plan opérationnel</td><td>Organismes partenaires, personnel, services, ententes et indicateurs</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <p><strong>Réserve scientifique importante :</strong> les chiffres 2025 disponibles dans les résultats consultés sont des résultats préliminaires du dénombrement. Le MSSS référence également un portrait plus complet publié en 2026, mais son document n'a pas pu être récupéré directement lors de cette consultation. Les chiffres préliminaires ne doivent donc pas être présentés comme le portrait final définitif.</p>
+  </div>
+</section>
+
+<footer>
+  <p class="sig">Étude préparée par Roger Savard — Québec, 25 novembre 2026</p>
+  <p>Sources officielles citées dans l'étude : MSSS (dénombrement du 15 avril 2025, résultats préliminaires), Institut de la statistique du Québec (2020-2021), Institut national de santé publique du Québec, CIRANO (2026), Journal of Epidemiology and Community Health, Réseau Solidarité itinérance du Québec.</p>
+</footer>
+
+</div>
+</body>
+</html>
